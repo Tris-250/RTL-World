@@ -32,6 +32,8 @@ jobs:
         run: |
           npm install vite
           npm install build
+          npm fund
+          npm audit fix
 
       - name: Build Project
         run: npm run build
