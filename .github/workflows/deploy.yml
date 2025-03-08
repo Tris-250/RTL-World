@@ -34,13 +34,12 @@ jobs:
           npm install terser
           npm fund
 
-      - name: Fix vulnerabilities
-        run: npm audit fix --force
-
-      - name: Fix vulnerabilities bis
+      - name: Configure Vite for GitHub Actions
         run: |
-          npm outdated
-          npm update
+            echo "import { defineConfig } from 'vite';" > vite.config.js
+            echo "export default defineConfig({" >> vite.config.js
+            echo "  build: { minify: 'terser' }" >> vite.config.js
+            echo "});" >> vite.config.js
 
       - name: Build Project
         run: npm run build
