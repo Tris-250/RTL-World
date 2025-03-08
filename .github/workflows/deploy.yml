@@ -28,8 +28,10 @@ jobs:
           echo "VITE_FIREBASE_APP_ID=${{ secrets.FB_APP_ID }}" >> .env
           echo "VITE_FIREBASE_MEASUREMENT_ID=${{ secrets.FB_MEASUREMENT_ID }}" >> .env
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
+        working-directory: "/"  # Mets ici le bon dossier
+
 
       - name: Build Project
         run: npm run build
