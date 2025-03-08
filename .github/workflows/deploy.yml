@@ -37,6 +37,11 @@ jobs:
       - name: Fix vulnerabilities
         run: npm audit fix --force
 
+      - name: Fix vulnerabilities bis
+        run: |
+          npm outdated
+          npm update
+
       - name: Build Project
         run: npm run build
 
