@@ -31,6 +31,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install vite
+          npm install vite build
+          npm install vite preview
           npm install terser
           npm fund
 
