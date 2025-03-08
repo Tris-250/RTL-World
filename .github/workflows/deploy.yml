@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: "/"  # Mets ici le bon dossier
+        working-directory: "\"  # Mets ici le bon dossier
 
 
       - name: Build Project
