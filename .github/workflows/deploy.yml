@@ -33,7 +33,9 @@ jobs:
           npm install vite
           npm install build
           npm fund
-          npm audit fix
+
+      - name: Fix vulnerabilities
+        run: npm audit fix --force
 
       - name: Build Project
         run: npm run build
