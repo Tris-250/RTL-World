@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install vite
-          npm install build
+          npm install terser
           npm fund
 
       - name: Fix vulnerabilities
