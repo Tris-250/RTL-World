@@ -43,7 +43,7 @@ jobs:
           npm update
 
       - name: Build Project
-        run: npm run build
+        run: npm run terser
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
