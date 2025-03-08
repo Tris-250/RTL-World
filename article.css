@@ -1,0 +1,187 @@
+/* Réinitialisation basique */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Mise en page générale */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1e23; /* Fond sombre pour la cohérence */
+    color: #e0e0e0; /* Texte clair */
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Bandeau en haut de la page */
+.article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2e35; /* Fond sombre pour le bandeau */
+    padding: 10px 20px;
+    border-radius: 8px;
+    position: relative; /* Permet de mieux contrôler la position */
+    width: 100%; /* Assure que le bandeau prend toute la largeur */
+    max-width: 1200px;
+    box-sizing: border-box; /* Assure que les bordures et le padding sont pris en compte dans la largeur totale */
+    z-index: 10;
+}
+
+.article-header .logo {
+    height: 40px; /* Ajustez la taille du logo */
+    width: auto;
+}
+
+.article-header .category {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #ffffff;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.article-header .back-button {
+    font-size: 1rem;
+    color: #66aaff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.article-header .back-button:hover {
+    background-color: #444;
+}
+
+/* Conteneur de l'article */
+#article-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #313338; /* Fond sombre pour l'article */
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce */
+}
+
+/* Titre de l'article */
+.article-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff; /* Titre blanc */
+    margin-bottom: 10px;
+}
+
+/* Auteur et timestamp */
+.article-meta {
+    font-size: 1rem;
+    color: #b0b0b0; /* Texte secondaire */
+    margin-bottom: 20px;
+}
+
+/* Image de l'article */
+.article-image {
+    max-width: 100%;       /* Limite la largeur à 50% */
+    height: auto;         /* Ajuste la hauteur automatiquement */
+    max-width: 600px;
+    margin-top: 20px;
+    margin-left: auto;    /* Centrer l'image à gauche */
+    margin-right: auto;   /* Centrer l'image à droite */
+    display: block;       /* Transforme l'image en bloc pour pouvoir la centrer */
+    border-radius: 8px;   /* Coins arrondis */
+}
+
+/* Corps de l'article */
+.article-body {
+    font-size: 1rem;
+    color: #d0d0d0; /* Texte principal dans un gris clair */
+    line-height: 1.8;
+}
+
+/* Titres secondaires dans l'article */
+.article-body h2, .article-body h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #f0f0f0;
+}
+
+/* Paragraphes */
+.article-body p {
+    margin-bottom: 15px;
+}
+
+/* Citations dans l'article (blockquote) */
+.article-body blockquote {
+    background-color: #3b3f46;
+    padding: 10px 20px;
+    margin: 20px 0;
+    font-style: normal; /* Enlever l'italique */
+    color: #d0d0d0;
+    border-radius: 8px; /* Coins arrondis */
+}
+
+/* Code et blocs de code */
+.article-body code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #444;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: #f0f0f0;
+}
+
+.article-body pre {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    color: #f0f0f0;
+}
+
+/* Liens dans le texte */
+.article-body a {
+    color: #66aaff; /* Bleu clair */
+    text-decoration: none;
+}
+
+.article-body a:hover {
+    text-decoration: underline;
+}
+
+/* Listes ordonnées et non ordonnées */
+.article-body ul, .article-body ol {
+    padding-left: 20px; /* Ajuste l'indentation pour les listes */
+    margin-bottom: 15px;
+}
+
+.article-body li {
+    margin-bottom: 10px; /* Espace entre les éléments de liste */
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    #article-container {
+        padding: 15px;
+    }
+
+    .article-title {
+        font-size: 1.5rem;
+    }
+
+    .article-meta {
+        font-size: 0.9rem;
+    }
+
+    .article-body {
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,148 @@
+/* Réinitialisation basique */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Mise en page générale */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1e23; /* Nouveau fond sombre */
+    color: #e0e0e0; /* Texte clair sur fond sombre */
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Style du bandeau en haut */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2e35; /* Fond sombre pour le bandeau */
+    padding: 10px 20px;
+    border-radius: 8px;
+    position: relative; /* Permet de mieux contrôler la position */
+    width: 100%; /* Assure que le bandeau prend toute la largeur */
+    max-width: 1200px;
+    box-sizing: border-box; /* Assure que les bordures et le padding sont pris en compte dans la largeur totale */
+    z-index: 10;
+}
+
+/* Logo à gauche */
+.logo {
+    height: 40px; /* Ajustez la taille du logo */
+    width: auto;
+}
+
+/* Titre de la page centré */
+.page-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #ffffff;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Bouton d'accueil à droite */
+.home-button {
+    font-size: 1rem;
+    color: #66aaff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #444;
+}
+
+#articles-container {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 10px;
+}
+
+/* Style des cartes d'articles */
+.article-card {
+    background-color: #313338; /* Nouveau fond de carte sombre */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus douce */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Ombre plus marquée au survol */
+}
+
+/* Titres des articles */
+.article-card h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* Titre en blanc pour le contraste */
+    margin-bottom: 10px;
+}
+
+/* Auteur et timestamp */
+.article-card p {
+    font-size: 14px;
+    color: #b0b0b0; /* Texte secondaire dans un gris plus doux */
+    margin-bottom: 10px;
+}
+
+/* Aperçu du contenu */
+.article-card div {
+    font-size: 16px;
+    color: #d0d0d0; /* Texte d'aperçu dans un gris clair */
+    margin-bottom: 10px;
+}
+
+/* Lien Lire l'article */
+.article-card a {
+    font-size: 16px;
+    color: #66aaff; /* Bleu clair pour le lien */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.article-card a:hover {
+    text-decoration: underline;
+}
+
+.article-card a.article-link {
+    text-decoration: none; /* Supprime le soulignement du lien */
+    color: inherit; /* Hérite de la couleur du texte de la carte */
+    display: block; /* Assure que toute la carte est cliquable */
+}
+
+.article-card a.article-link:hover {
+    color: #f0f0f0; /* Garde la couleur claire au survol du lien */
+}
+
+/* Image de l'article */
+.article-image {
+    max-width: 25%;       /* Limite la largeur à 50% */
+    height: auto;         /* Ajuste la hauteur automatiquement */
+    margin-top: 20px;
+    display: block;       /* Transforme l'image en bloc pour pouvoir la centrer */
+    border-radius: 8px;   /* Coins arrondis */
+}
+
+/* Petits textes en petite taille */
+small {
+    font-size: 0.85em;
+    color: #b0b0b0; /* Gris clair pour les petits textes */
+}

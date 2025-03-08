@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Ajouter un article</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <h1>Interface Administrateur - Ajouter un article</h1>
+    <form id="articleForm">
+        <label for="title">Titre :</label>
+        <input type="text" id="title" required>
+        
+        <label for="author">Auteur :</label>
+        <input type="text" id="author" required>
+
+        <label for="content">Contenu (Markdown) :</label>
+        <textarea id="content" rows="5" required></textarea>
+
+        <label for="image">Lien de l'image (ImgBB) :</label>
+        <input type="text" id="image">
+
+        <label for="category">Catégorie :</label>
+        <select id="category">
+            <option value="Votre quotidien">Votre quotidien</option>
+            <option value="Flash Infos">Flash Infos</option>
+            <option value="Long format">Long format</option>
+            <option value="Abrège frère">Abrège frère</option>
+        </select>
+
+        <button type="submit">Publier</button>
+    </form>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
