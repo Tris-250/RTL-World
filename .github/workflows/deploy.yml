@@ -44,7 +44,7 @@ jobs:
             echo "});" >> vite.config.js
 
       - name: Build Project
-        run: npm run
+        run: npm run vite build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
