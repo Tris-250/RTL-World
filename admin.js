@@ -12,15 +12,12 @@ const firebaseConfig = {
     measurementId: "G-DGMLVJ767X"
 };
 
-// Initialisation Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Sélection du formulaire
 const form = document.getElementById("articleForm");
 
-// Vérification de l'état de l'authentification de l'utilisateur
 onAuthStateChanged(auth, (user) => {
     if (user) {
         if (!isUserAuthorized(user)) {
@@ -38,25 +35,50 @@ function isUserAuthorized(user) {
     return authorizedEmails.includes(user.email);
 }
 
+async function uploadToImgBB(file) {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+        const response = await fetch("https://api.imgbb.com/1/upload?key=f5d17031565550135ce61443068b967a", {
+            method: "POST",
+            body: formData,
+        });
+        const data = await response.json();
+        return data.data.url;
+    } catch (error) {
+        console.error("Erreur d'upload ImgBB :", error);
+        return "";
+    }
+}
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
-    const image = document.getElementById("image").value || "";
-    const meme = document.getElementById("meme").value || "";
     const category = document.getElementById("category").value;
     const author = document.getElementById("author").value;
     const date = document.getElementById("date").value;
+
+    let imageUrl = "";
+    let memeUrl = "";
+
+    if (imageUpload.files.length > 0) {
+        imageUrl = await uploadToImgBB(imageUpload.files[0]);
+    }
+    if (memeUpload.files.length > 0) {
+        memeUrl = await uploadToImgBB(memeUpload.files[0]);
+    }
 
     try {
         await addDoc(collection(db, "articles"), {
             title: title,
             content: content,
-            image: image,
+            image: imageUrl,
             category: category,
             author: author,
-            meme: meme,
+            meme: memeUrl,
             timestamp: date
         });
 
