@@ -2,13 +2,13 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 const firebaseConfig = {
-    apiKey: import.meta.env.FB_API_KEY,
-    authDomain: import.meta.env.FB_AUTH_DOMAIN,
-    projectId: import.meta.env.FB_PROJECT_ID,
-    storageBucket: import.meta.env.FB_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.FB_MESSAGING_SENDER_ID,
-    appId: import.meta.env.FB_APP_ID,
-    measurementId: import.meta.env.FB_MEASUREMENT_ID
+    apiKey: "AIzaSyCaexv-0SVEmPeRNYt-WviKBiUhH-Ju7XQ",
+    authDomain: "imago-veritatis.firebaseapp.com",
+    projectId: "imago-veritatis",
+    storageBucket: "imago-veritatis.firebasestorage.app",
+    messagingSenderId: "119028191334",
+    appId: "1:119028191334:web:44815ae6a51aac8d959da7",
+    measurementId: "G-DGMLVJ767X"
 };
 
 const app = initializeApp(firebaseConfig);
