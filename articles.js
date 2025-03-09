@@ -34,12 +34,22 @@ async function loadArticles() {
     const querySnapshot = await getDocs(articlesRef);
 
     let articlesContainer = document.getElementById("articles-container");
+    let articles = [];
 
     querySnapshot.forEach((doc) => {
         let article = doc.data();
+        article.id = doc.id;
+        articles.push(article);
+    });
 
+    articles.sort((a, b) => {
+        let dateA = a.timestamp.split('/').reverse().join('-');
+        let dateB = b.timestamp.split('/').reverse().join('-');
+        return dateB.localeCompare(dateA);
+    });
+
+    articles.forEach((article) => {
         let previewText = article.content.substring(0, 200);
-
         let previewHTML = converter.makeHtml(previewText);
 
         let articleElement = document.createElement("div");

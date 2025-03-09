@@ -44,6 +44,7 @@ form.addEventListener("submit", async (e) => {
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
     const image = document.getElementById("image").value || "";
+    const meme = document.getElementById("meme").value || "";
     const category = document.getElementById("category").value;
     const author = document.getElementById("author").value;
     const date = new Date();
@@ -55,6 +56,7 @@ form.addEventListener("submit", async (e) => {
             image: image,
             category: category,
             author: author,
+            meme: meme,
             timestamp: date.getDate() + '/' +  date.getMonth() + '/' + date.getFullYear()
         });
 
