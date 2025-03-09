@@ -1,0 +1,20 @@
+
+{
+    "name": "imago-veritatis",
+    "description": "Site Internet du journal micronational francophone duscordien Imago Veritatis",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Imago-Veritatis/Imago-Veritatis.git"
+    },
+    "keywords": [],
+    "author": "Timoh de Solarys",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/Imago-Veritatis/Imago-Veritatis/issues"
+    },
+    "homepage": "https://github.com/Imago-Veritatis/Imago-Veritatis"
+}
