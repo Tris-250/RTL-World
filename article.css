@@ -45,7 +45,7 @@ body {
     flex-grow: 1;
 }
 
-.main-header .back-button {
+.header-button {
     font-size: 1rem;
     color: #66aaff;
     text-decoration: none;
@@ -54,9 +54,10 @@ body {
     border-radius: 5px;
     background-color: #333;
     transition: background-color 0.3s ease;
+    margin-left: 5px;
 }
 
-.main-header .back-button:hover {
+.header-button:hover {
     background-color: #444;
 }
 
