@@ -55,7 +55,7 @@ async function loadArticles() {
         let articleElement = document.createElement("div");
         articleElement.classList.add("article-card");
         articleElement.innerHTML = `
-            <a href="article.html?id=${doc.id}" class="article-link">
+            <a href="article.html?id=${article.id}" class="article-link">
                 <h2>${article.title}</h2>
                 <p>Auteur : ${article.author} - Publié le : ${article.timestamp} - Catégorie : ${article.category}</p>
                 <div>${previewHTML}...</div>
