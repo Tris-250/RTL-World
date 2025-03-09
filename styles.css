@@ -1,15 +1,13 @@
-/* Réinitialisation basique */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Mise en page générale */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1a1e23; /* Nouveau fond sombre */
-    color: #e0e0e0; /* Texte clair sur fond sombre */
+    background-color: #1a1e23;
+    color: #e0e0e0;
     line-height: 1.6;
     padding: 20px;
     display: flex;
@@ -20,28 +18,25 @@ body {
     margin: 0;
 }
 
-/* Style du bandeau en haut */
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2a2e35; /* Fond sombre pour le bandeau */
+    background-color: #2a2e35;
     padding: 10px 20px;
     border-radius: 8px;
-    position: relative; /* Permet de mieux contrôler la position */
-    width: 100%; /* Assure que le bandeau prend toute la largeur */
+    position: relative;
+    width: 100%;
     max-width: 1200px;
-    box-sizing: border-box; /* Assure que les bordures et le padding sont pris en compte dans la largeur totale */
+    box-sizing: border-box;
     z-index: 10;
 }
 
-/* Logo à gauche */
 .logo {
-    height: 40px; /* Ajustez la taille du logo */
+    height: 40px;
     width: auto;
 }
 
-/* Titre de la page centré */
 .page-title {
     font-size: 1.2rem;
     font-weight: bold;
@@ -51,7 +46,6 @@ body {
     flex-grow: 1;
 }
 
-/* Bouton d'accueil à droite */
 .home-button {
     font-size: 1rem;
     color: #66aaff;
@@ -73,47 +67,42 @@ body {
     margin-top: 10px;
 }
 
-/* Style des cartes d'articles */
 .article-card {
-    background-color: #313338; /* Nouveau fond de carte sombre */
+    background-color: #313338;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus douce */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .article-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Ombre plus marquée au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* Titres des articles */
 .article-card h2 {
     font-size: 24px;
     font-weight: bold;
-    color: #ffffff; /* Titre en blanc pour le contraste */
+    color: #ffffff;
     margin-bottom: 10px;
 }
 
-/* Auteur et timestamp */
 .article-card p {
     font-size: 14px;
-    color: #b0b0b0; /* Texte secondaire dans un gris plus doux */
+    color: #b0b0b0;
     margin-bottom: 10px;
 }
 
-/* Aperçu du contenu */
 .article-card div {
     font-size: 16px;
-    color: #d0d0d0; /* Texte d'aperçu dans un gris clair */
+    color: #d0d0d0;
     margin-bottom: 10px;
 }
 
-/* Lien Lire l'article */
 .article-card a {
     font-size: 16px;
-    color: #66aaff; /* Bleu clair pour le lien */
+    color: #66aaff;
     text-decoration: none;
     font-weight: bold;
 }
@@ -123,26 +112,24 @@ body {
 }
 
 .article-card a.article-link {
-    text-decoration: none; /* Supprime le soulignement du lien */
-    color: inherit; /* Hérite de la couleur du texte de la carte */
-    display: block; /* Assure que toute la carte est cliquable */
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .article-card a.article-link:hover {
-    color: #f0f0f0; /* Garde la couleur claire au survol du lien */
+    color: #f0f0f0;
 }
 
-/* Image de l'article */
 .article-image {
-    max-width: 25%;       /* Limite la largeur à 50% */
-    height: auto;         /* Ajuste la hauteur automatiquement */
+    max-width: 25%;
+    height: auto;
     margin-top: 20px;
-    display: block;       /* Transforme l'image en bloc pour pouvoir la centrer */
-    border-radius: 8px;   /* Coins arrondis */
+    display: block;
+    border-radius: 8px;
 }
 
-/* Petits textes en petite taille */
 small {
     font-size: 0.85em;
-    color: #b0b0b0; /* Gris clair pour les petits textes */
+    color: #b0b0b0;
 }

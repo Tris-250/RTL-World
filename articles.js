@@ -14,7 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Extension Showdown pour les petits textes
 showdown.extension('smallText', function() {
     return [{
         type: 'lang',
@@ -23,7 +22,6 @@ showdown.extension('smallText', function() {
     }];
 });
 
-// Initialiser Showdown avec l'extension
 let converter = new showdown.Converter({
     simplifiedAutoLink: true,
     strikethrough: true,
@@ -31,9 +29,8 @@ let converter = new showdown.Converter({
     extensions: ['smallText']
 });
 
-// Fonction pour charger les articles
 async function loadArticles() {
-    const articlesRef = collection(db, "articles");  // Assure-toi que ta collection s'appelle bien "articles"
+    const articlesRef = collection(db, "articles");
     const querySnapshot = await getDocs(articlesRef);
 
     let articlesContainer = document.getElementById("articles-container");
@@ -41,13 +38,10 @@ async function loadArticles() {
     querySnapshot.forEach((doc) => {
         let article = doc.data();
 
-        // Récupérer les 200 premiers caractères de l'article
         let previewText = article.content.substring(0, 200);
 
-        // Convertir les 200 premiers caractères en HTML
         let previewHTML = converter.makeHtml(previewText);
 
-        // Créer l'élément article avec l'aperçu
         let articleElement = document.createElement("div");
         articleElement.classList.add("article-card");
         articleElement.innerHTML = `
@@ -62,5 +56,4 @@ async function loadArticles() {
     });
 }
 
-// Charger les articles au chargement de la page
 window.onload = loadArticles;

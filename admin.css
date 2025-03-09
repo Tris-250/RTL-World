@@ -1,15 +1,13 @@
-/* Réinitialisation basique */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Mise en page générale */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1a1e23; /* Nouveau fond sombre */
-    color: #e0e0e0; /* Texte clair sur fond sombre */
+    background-color: #1a1e23;
+    color: #e0e0e0;
     line-height: 1.6;
     padding: 20px;
     display: flex;
@@ -26,14 +24,13 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Formulaire */
 form {
-    background-color: #313338; /* Fond des formulaires */
+    background-color: #313338;
     padding: 20px;
     border-radius: 8px;
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 label {
@@ -44,9 +41,9 @@ label {
 }
 
 input, textarea, select {
-    background-color: #444848; /* Fond des champs de saisie */
-    color: #e0e0e0; /* Texte des champs */
-    border: 1px solid #555757; /* Bordure claire */
+    background-color: #444848;
+    color: #e0e0e0;
+    border: 1px solid #555757;
     padding: 10px;
     width: 100%;
     border-radius: 5px;
@@ -54,14 +51,12 @@ input, textarea, select {
     font-size: 1rem;
 }
 
-/* Ajout d'un hover sur les champs de saisie */
 input:hover, textarea:hover, select:hover {
-    border-color: #66aaff; /* Bleu clair au survol */
+    border-color: #66aaff;
 }
 
-/* Bouton */
 button {
-    background-color: #66aaff; /* Bleu clair */
+    background-color: #66aaff;
     color: #ffffff;
     border: none;
     padding: 12px 20px;
@@ -72,10 +67,9 @@ button {
 }
 
 button:hover {
-    background-color: #539ed8; /* Bleu plus foncé au survol */
+    background-color: #539ed8;
 }
 
-/* Responsivité */
 @media (max-width: 768px) {
     h1 {
         font-size: 2rem;

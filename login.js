@@ -11,7 +11,6 @@ const firebaseConfig = {
     measurementId: "G-DGMLVJ767X"
 };
 
-// Initialisation de Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -27,9 +26,8 @@ loginForm.addEventListener("submit", async (e) => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Vérification si l'email a été vérifié
         if (user.emailVerified) {
-            window.location.href = "/admin.html"; // Redirection vers la page admin après connexion
+            window.location.href = "admin.html";
         } else {
             alert("Veuillez vérifier votre email avant de vous connecter.");
         }

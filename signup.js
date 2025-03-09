@@ -11,11 +11,9 @@ const firebaseConfig = {
     measurementId: "G-DGMLVJ767X"
 };
 
-// Initialisation de Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Sélection du formulaire d'inscription
 const signupForm = document.getElementById("signupForm");
 
 signupForm.addEventListener("submit", async (e) => {
@@ -31,16 +29,13 @@ signupForm.addEventListener("submit", async (e) => {
     }
 
     try {
-        // Création de l'utilisateur dans Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Envoi de l'email de vérification
         await sendEmailVerification(user);
 
-        // Redirection après l'inscription
         alert("Inscription réussie ! Un e-mail de vérification a été envoyé. Veuillez vérifier votre e-mail.");
-        window.location.href = "/login.html"; // Redirection vers la page de connexion
+        window.location.href = "login.html";
     } catch (error) {
         console.error("Erreur d'inscription :", error);
         alert("Erreur lors de l'inscription : " + error.message);

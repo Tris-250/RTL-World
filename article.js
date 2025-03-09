@@ -14,7 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Récupérer l'ID de l'article depuis l'URL
 const urlParams = new URLSearchParams(window.location.search);
 const articleId = urlParams.get("id");
 
@@ -38,10 +37,8 @@ async function loadArticle() {
     if (articleSnap.exists()) {
         let article = articleSnap.data();
 
-        // Mise à jour du titre de la page
         document.title = `Imago Veritatis - ${article.title}`;
 
-        // Affichage de la catégorie dans le bandeau
         document.getElementById("article-category").textContent = article.category;
 
         let converter = new showdown.Converter({
@@ -51,7 +48,6 @@ async function loadArticle() {
             extensions: ['smallText']
         });
 
-        // Convertir le contenu en HTML
         let htmlContent = converter.makeHtml(article.content);
 
         document.getElementById("article-content").innerHTML = `
@@ -60,14 +56,12 @@ async function loadArticle() {
             <div class="article-body">${htmlContent}</div>
         `;
 
-        // Ajouter l'image en dehors de "article-content"
         if (article.image) {
             let img = document.createElement("img");
             img.src = article.image;
             img.alt = "Planche";
             img.classList.add("article-image");
 
-            // Insérer l'image après l'article
             document.body.appendChild(img);
         }
     } else {
@@ -75,5 +69,4 @@ async function loadArticle() {
     }
 }
 
-// Charger l'article au chargement de la page
 window.onload = loadArticle;
