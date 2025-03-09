@@ -47,7 +47,7 @@ form.addEventListener("submit", async (e) => {
     const meme = document.getElementById("meme").value || "";
     const category = document.getElementById("category").value;
     const author = document.getElementById("author").value;
-    const date = new Date();
+    const date = document.getElementById("date").value;
 
     try {
         await addDoc(collection(db, "articles"), {
@@ -57,7 +57,7 @@ form.addEventListener("submit", async (e) => {
             category: category,
             author: author,
             meme: meme,
-            timestamp: date.getDate() + '/' +  date.getMonth() + '/' + date.getFullYear()
+            timestamp: date
         });
 
         alert("Article publié !");
