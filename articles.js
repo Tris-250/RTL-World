@@ -29,9 +29,7 @@ let converter = new showdown.Converter({
     extensions: ['smallText']
 });
 
-async function loadArticles() {
-    alert("Le site a quelques bugs connus tels que la date et le markdown, cependant je n'ai pas trop le temps de coder, donc ça attendra. - Timoh de Solarys")
-    
+async function loadArticles() {    
     const articlesRef = collection(db, "articles");
     const querySnapshot = await getDocs(articlesRef);
 
