@@ -1,4 +1,6 @@
-# Imago-Veritatis
-Site officiel du journal micronational francophone discordien RTL World
+# RTL-World
+Site web officiel du journal micronational francophone discordien RTL World.
 
-Logiciel basé sur l'Imago Veritatis
+Site web basé sur le site officiel de l'Imago Veritatis : https://imago-veritatis.github.io/Imago-Veritatis/
+
+Un grand merci à Timoh pour son aide précieuse dans la conception de notre site web.
