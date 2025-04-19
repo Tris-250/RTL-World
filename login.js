@@ -2,13 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCaexv-0SVEmPeRNYt-WviKBiUhH-Ju7XQ",
-    authDomain: "imago-veritatis.firebaseapp.com",
-    projectId: "imago-veritatis",
-    storageBucket: "imago-veritatis.firebasestorage.app",
-    messagingSenderId: "119028191334",
-    appId: "1:119028191334:web:44815ae6a51aac8d959da7",
-    measurementId: "G-DGMLVJ767X"
+    apiKey: "AIzaSyBw7PSHW4fe2jptxyf7xHtyINSrYG_TupA",
+    authDomain: "rtl-world.firebaseapp.com",
+    projectId: "rtl-world",
+    storageBucket: "rtl-world.firebasestorage.app",
+    messagingSenderId: "1092619392407",
+    appId: "1:1092619392407:web:f968b6ef5416d66d6360d2",
+    measurementId: "G-4GBT38563H"
+
 };
 
 const app = initializeApp(firebaseConfig);
