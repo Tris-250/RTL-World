@@ -58,6 +58,10 @@ body {
     margin-left: 5px;
 }
 
+.header-button:visited {
+    color: #66aaff;
+}
+
 .header-button:hover {
     background-color: #444;
 }
