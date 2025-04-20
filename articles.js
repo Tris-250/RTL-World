@@ -43,10 +43,11 @@ async function loadArticles() {
         articles.push(article);
     });
 
+    // CORRECTION ICI
     articles.sort((a, b) => {
-        let dateA = a.timestamp.split('/').reverse().join('-');
-        let dateB = b.timestamp.split('/').reverse().join('-');
-        return dateB.localeCompare(dateA);
+        let [dayA, monthA, yearA] = a.timestamp.split('/');
+        let [dayB, monthB, yearB] = b.timestamp.split('/');
+        return new Date(`${yearB}-${monthB}-${dayB}`) - new Date(`${yearA}-${monthA}-${dayA}`);
     });
 
     articles.forEach((article) => {
@@ -66,5 +67,6 @@ async function loadArticles() {
         articlesContainer.appendChild(articleElement);
     });
 }
+
 
 window.onload = loadArticles;
