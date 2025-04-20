@@ -45,9 +45,9 @@ async function loadArticles() {
 
     // CORRECTION ICI
     articles.sort((a, b) => {
-        let [dayA, monthA, yearA] = a.timestamp.split('/');
-        let [dayB, monthB, yearB] = b.timestamp.split('/');
-        return new Date(`${yearB}-${monthB}-${dayB}`) - new Date(`${yearA}-${monthA}-${dayA}`);
+        let dateA = a.timestamp.split('/').reverse().join('-');
+        let dateB = b.timestamp.split('/').reverse().join('-');
+        return dateB.localeCompare(dateA);
     });
 
     articles.forEach((article) => {
