@@ -32,7 +32,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 function isUserAuthorized(user) {
-    const authorizedEmails = ["tpillot27@gmail.com"];
+    const authorizedEmails = ["parlement.listenbourg@gmail.com"];
     return authorizedEmails.includes(user.email);
 }
 
