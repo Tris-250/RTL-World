@@ -21,7 +21,7 @@ const form = document.getElementById("articleForm");
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-    /if (!isUserAuthorized(user)) {
+    if (!isUserAuthorized(user)) {
             alert("Accès refusé : Vous n'êtes pas autorisé à accéder à cette page.");
             window.location.href = ".";
         }
