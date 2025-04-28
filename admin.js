@@ -1,4 +1,6 @@
-import { getFirestore, collection, addDoc, doc, getDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBw7PSHW4fe2jptxyf7xHtyINSrYG_TupA",
@@ -17,29 +19,12 @@ const auth = getAuth(app);
 
 const form = document.getElementById("articleForm");
 
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        if (!await isUserAuthorized(user)) {
-            alert("Accès refusé : Vous n'êtes pas autorisé à accéder à cette page.");
-            window.location.href = ".";
-        }
-    } else {
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
         alert("Veuillez vous connecter pour accéder à cette page.");
         window.location.href = "login.html";
     }
 });
-
-async function isUserAuthorized(user) {
-    const q = query(
-        collection(db, "ListeAdmin"),
-        where("email", "==", user.email)
-    );
-
-    const querySnapshot = await getDocs(q);
-
-    return !querySnapshot.empty;
-}
-
 
 async function uploadToImgBB(file) {
     const formData = new FormData();
