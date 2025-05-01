@@ -14,8 +14,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
 }
 
 .main-header {
@@ -25,11 +24,10 @@ body {
     background-color: #2a2e35;
     padding: 10px 20px;
     border-radius: 8px;
-    position: relative;
     width: 100%;
     max-width: 1200px;
+    flex-wrap: wrap;
     box-sizing: border-box;
-    z-index: 10;
 }
 
 .logo {
@@ -66,10 +64,30 @@ body {
     background-color: #444;
 }
 
+.header-select select {
+    background-color: #333;
+    color: #66aaff;
+    border: 1px solid #444;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    font-family: inherit;
+    height: 40px;
+    appearance: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 5px;
+}
+
+.header-select select:hover {
+    background-color: #444;
+}
+
 #articles-container {
     width: 100%;
     max-width: 800px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .article-card {
@@ -134,52 +152,7 @@ body {
     border-radius: 8px;
 }
 
-.header-select select {
-  background-color: #2b2b2b;
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-left: 10px;
-  outline: none;
-}
-
-.header-select select:hover {
-  background-color: #3c3c3c;
-  cursor: pointer;
-}
-
-.main-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #2c2f36;
-  padding: 10px 20px;
-  flex-wrap: wrap;
-}
-
-.category-select {
-  background-color: #1f1f1f;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-left: auto;
-  margin-right: 10px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  transition: 0.2s ease;
-}
-
-.category-select:hover {
-  background-color: #333;
-  cursor: pointer;
-}
-
 small {
     font-size: 0.85em;
     color: #b0b0b0;
 }
-
-

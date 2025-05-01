@@ -36,7 +36,7 @@ async function loadArticles() {
     const articlesRef = collection(db, "articles");
     const querySnapshot = await getDocs(articlesRef);
 
-    const categoryFilter = document.getElementById("category-filter");
+    const categoryFilter = document.getElementById("categoryFilter");
     const articlesContainer = document.getElementById("articles-container");
 
     const categoriesSet = new Set();
