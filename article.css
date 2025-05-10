@@ -25,12 +25,14 @@ body {
     background-color: #1a1e23;
     color: #e0e0e0;
     line-height: 1.6;
-    padding: 20px;
+    padding: 0.5%;
+    padding-right: 0%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
 .main-header {
@@ -39,6 +41,7 @@ body {
     align-items: center;
     background-color: #2a2e35;
     padding: 10px 20px;
+    margin-right: 0.5%;
     border-radius: 8px;
     position: relative;
     width: 100%;
@@ -71,6 +74,8 @@ body {
     background-color: #333;
     transition: background-color 0.3s ease;
     margin-left: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .header-button:hover {
@@ -83,8 +88,57 @@ body {
     background-color: #313338;
     border-radius: 8px;
     padding: 20px;
-    margin-top: 10px;
+    margin-top: 0.5%;
+    margin-right: 0.5%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 1920px) {
+    #article-container {
+        margin-right: 1%;
+        margin-top: 1%;
+    }
+
+    .main-header{
+        margin-right: 1%;
+    }
+
+    body {
+        padding: 1%;
+        padding-right: 0%;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    #article-container {
+        margin-right: 1.5%;
+        margin-top: 1.5%;
+    }
+
+    .main-header{
+        margin-right: 1.5%;
+    }
+
+    body {
+        padding: 1.5%;
+        padding-right: 0%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #article-container {
+        margin-right: 2%;
+        margin-top: 2%;
+    }
+
+    .main-header{
+        margin-right: 2%;
+    }
+
+    body {
+        padding: 2%;
+        padding-right: 0%;
+    }
 }
 
 .article-title {
@@ -101,8 +155,8 @@ body {
 }
 
 .article-image {
-    max-width: 100%;
     height: auto;
+    width: 100%;
     max-width: 600px;
     margin-top: 20px;
     margin-left: auto;
@@ -170,20 +224,35 @@ body {
     margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-    #article-container {
-        padding: 15px;
-    }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-    .article-title {
-        font-size: 1.5rem;
-    }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #313338;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 100;
+}
 
-    .article-meta {
-        font-size: 0.9rem;
-    }
+.dropdown-content a {
+    color: #e0e0e0;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
 
-    .article-body {
-        font-size: 0.95rem;
-    }
+.dropdown-content a:hover {
+    background-color: #444848;
+}
+
+.dropdown-separator {
+  border: none;
+  border-top: 1px solid #555;
+  margin: 8px 0;
 }

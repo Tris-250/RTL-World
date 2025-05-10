@@ -19,6 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
     <title></title>
     <link rel="stylesheet" href="article.css">
     <link rel="icon" type="image/png" href="logo.png">
@@ -27,8 +28,17 @@
     <header class="main-header">
         <img src="logo.png" alt="Logo du journal" class="logo">
         <div id="article-category" class="category"></div>
-        <a href="https://discord.gg/Z8DXvkeU8j" class="header-button">Discord</a>
-        <a href="." class="header-button">Accueil</a>
+        <div class="dropdown">
+            <button id="dropdownToggle" class="header-button">+</button>
+            <div id="dropdownMenu" class="dropdown-content">    
+                <a href=".">Accueil</a>
+                <a href="https://discord.gg/Z8DXvkeU8j">Discord</a>
+                <a href="admin">Page administrateur</a>
+                <a href="https://www.youtube.com/@LCMicro">LCM</a>
+                <hr class="dropdown-separator">
+                <a id="lastArticleLink" href="#">Dernier article</a>
+            </div>
+        </div>
     </header>
 
     <div id="article-container">
@@ -36,6 +46,5 @@
     </div>
 
     <script type="module" src="article.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 </body>
 </html>

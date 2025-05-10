@@ -14,9 +14,9 @@
   limitations under the License.
 */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, Timestamp, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCaexv-0SVEmPeRNYt-WviKBiUhH-Ju7XQ",
@@ -32,6 +32,35 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+const toggleButton = document.getElementById('dropdownToggle');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+toggleButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+});
+
+window.addEventListener('click', () => {
+    dropdownMenu.style.display = 'none';
+});
+
+dropdownMenu.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+async function setLastArticleLink() {
+    const articlesRef = collection(db, 'articles');
+    const q = query(articlesRef, orderBy('realTimestamp', 'desc'), limit(1));
+    const snapshot = await getDocs(q);
+    if (!snapshot.empty) {
+        const docSnap = snapshot.docs[0];
+        const link = document.getElementById('lastArticleLink');
+        link.href = `/article.html?id=${docSnap.id}`;
+    }
+}
+
+setLastArticleLink();
+
 const form = document.getElementById("articleForm");
 
 onAuthStateChanged(auth, (user) => {
@@ -39,7 +68,7 @@ onAuthStateChanged(auth, (user) => {
         
     } else {
         alert("Veuillez vous connecter pour accéder à cette page.");
-        window.location.href = "login.html";
+        window.location.href = "/login";
     }
 });
 
@@ -67,7 +96,11 @@ form.addEventListener("submit", async (e) => {
     const content = document.getElementById("content").value;
     const category = document.getElementById("category").value;
     const author = document.getElementById("author").value;
-    const date = document.getElementById("date").value;
+    const dateStr = document.getElementById("date").value;
+
+    const [day, month, year] = dateStr.split('/').map(Number);
+    const dateObj = new Date(year, month - 1, day);
+    const realTimestamp = Timestamp.fromDate(dateObj);
 
     let imageUrl = "";
     let memeUrl = "";
@@ -87,7 +120,8 @@ form.addEventListener("submit", async (e) => {
             category: category,
             author: author,
             meme: memeUrl,
-            timestamp: date
+            timestamp: dateStr,
+            realTimestamp: realTimestamp
         });
 
         alert("Article publié !");
