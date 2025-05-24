@@ -16,7 +16,7 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc, Timestamp, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, Timestamp, query, orderBy, limit, getDocs, doc, getDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCaexv-0SVEmPeRNYt-WviKBiUhH-Ju7XQ",
@@ -31,6 +31,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+const form = document.getElementById("articleForm");
+const select = document.getElementById("articleSelect");
+const loadBtn = document.getElementById("loadBtn");
+const createBtn = document.getElementById("createBtn");
+const updateBtn = document.getElementById("updateBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+const formTitle = document.getElementById("formTitle");
+
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const dateInput = document.getElementById("date");
+const contentInput = document.getElementById("content");
+const imageUpload = document.getElementById("imageUpload");
+const memeUpload = document.getElementById("memeUpload");
+const categoryInput= document.getElementById("category");
+
+let currentDocId = null;
 
 const toggleButton = document.getElementById('dropdownToggle');
 const dropdownMenu = document.getElementById('dropdownMenu');
@@ -61,8 +79,6 @@ async function setLastArticleLink() {
 
 setLastArticleLink();
 
-const form = document.getElementById("articleForm");
-
 onAuthStateChanged(auth, (user) => {
     if (user) {
         
@@ -70,6 +86,48 @@ onAuthStateChanged(auth, (user) => {
         alert("Veuillez vous connecter pour accéder à cette page.");
         window.location.href = "/login";
     }
+});
+
+async function loadArticleList() {
+    const snapshot = await getDocs(collection(db, "articles"));
+    snapshot.forEach(docSnap => {
+        const opt = document.createElement("option");
+        opt.value = docSnap.id;
+        opt.text  = `${docSnap.data().title} — ${docSnap.id}`;
+        select.appendChild(opt);
+    });
+}
+
+let reloaded = false
+
+window.reloadArticleList = async function() {
+    if (reloaded) {
+    } else {
+        await loadArticleList();
+        reloaded = true;
+    }
+}
+
+loadBtn.addEventListener("click", async () => {
+    const id = select.value;
+    if (!id) return alert("Veuillez choisir un article.");
+    const docRef = doc(db, "articles", id);
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) return alert("Article introuvable.");
+
+    const data = docSnap.data();
+    titleInput.value = data.title;
+    authorInput.value = data.author;
+    dateInput.value = data.timestamp;
+    contentInput.value = data.content;
+    categoryInput.value = data.category;
+
+    createBtn.style.display = "none";
+    updateBtn.style.display = "inline-block";
+    deleteBtn.style.display = "inline-block";
+    formTitle.textContent = "Modifier / Supprimer";
+
+    currentDocId = id;
 });
 
 async function uploadToImgBB(file) {
@@ -89,45 +147,56 @@ async function uploadToImgBB(file) {
     }
 }
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async e => {
     e.preventDefault();
+    if (currentDocId) return;
 
-    const title = document.getElementById("title").value;
-    const content = document.getElementById("content").value;
-    const category = document.getElementById("category").value;
-    const author = document.getElementById("author").value;
-    const dateStr = document.getElementById("date").value;
-
-    const [day, month, year] = dateStr.split('/').map(Number);
-    const dateObj = new Date(year, month - 1, day);
-    const realTimestamp = Timestamp.fromDate(dateObj);
-
-    let imageUrl = "";
-    let memeUrl = "";
-
-    if (imageUpload.files.length > 0) {
-        imageUrl = await uploadToImgBB(imageUpload.files[0]);
-    }
-    if (memeUpload.files.length > 0) {
-        memeUrl = await uploadToImgBB(memeUpload.files[0]);
-    }
-
-    try {
-        await addDoc(collection(db, "articles"), {
-            title: title,
-            content: content,
-            image: imageUrl,
-            category: category,
-            author: author,
-            meme: memeUrl,
-            timestamp: dateStr,
-            realTimestamp: realTimestamp
-        });
-
-        alert("Article publié !");
-        form.reset();
-    } catch (error) {
-        console.error("Erreur lors de l'ajout :", error);
-        alert("Erreur lors de la publication.");
-    }
+    await saveArticle();  
 });
+
+updateBtn.addEventListener("click", async () => {
+    if (!currentDocId) return;
+    await saveArticle(currentDocId);
+});
+
+deleteBtn.addEventListener("click", async () => {
+    if (!currentDocId) return;
+    if (!confirm("Confirmer la suppression ?")) return;
+    await deleteDoc(doc(db, "articles", currentDocId));
+    alert("Article supprimé.");
+    window.location.reload();
+});
+
+async function saveArticle(docId = null) {
+  const [day, month, year] = dateInput.value.split('/').map(Number);
+  const realTimestamp = Timestamp.fromDate(new Date(year, month - 1, day));
+
+  let imageUrl = "", memeUrl = "";
+  if (imageUpload.files[0]) imageUrl = await uploadToImgBB(imageUpload.files[0]);
+  if (memeUpload.files[0])  memeUrl  = await uploadToImgBB(memeUpload.files[0]);
+
+  const data = {
+    title: titleInput.value,
+    author: authorInput.value,
+    timestamp: dateInput.value,
+    realTimestamp,
+    content: contentInput.value,
+    category:categoryInput.value,
+    ...(imageUrl && { image: imageUrl }),
+    ...(memeUrl  && { meme: memeUrl })
+  };
+
+  try {
+    if (docId) {
+      await updateDoc(doc(db, "articles", docId), data);
+      alert("Article modifié !");
+    } else {
+      await addDoc(collection(db, "articles"), data);
+      alert("Article publié !");
+    }
+    window.location.reload();
+  } catch (err) {
+    console.error(err);
+    alert("Erreur lors de l’opération.");
+  }
+}

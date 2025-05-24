@@ -40,8 +40,17 @@
             </div>
         </div>
     </header>
+
+    <div id="selectForm">
+        <h2>Modifier / Supprimer un article</h2>
+        <select id="articleSelect" onclick="reloadArticleList()">
+            <option value="" disabled selected>-- Choisissez un article --</option>
+        </select>
+        <button id="loadBtn">Charger</button>
+    </div>
+
     <form id="articleForm">
-        <h1>Ajouter un article</h1>
+        <h1 id="formTitle">Ajouter un article</h1>
         
         <label for="title">Titre :</label>
         <input type="text" id="title" required>
@@ -53,7 +62,7 @@
         <input type="text" id="date" required>
 
         <label for="content">Contenu (Markdown) :</label>
-        <textarea id="content" rows="5" required></textarea>
+        <textarea id="content" rows="10" required></textarea>
 
         <label for="imageUpload">Image :</label>
         <input type="file" id="imageUpload" accept="image/*">
@@ -69,7 +78,11 @@
             <option value="Abrège frère">Abrège frère</option>
         </select>
 
-        <button type="submit">Publier</button>
+        <div class="buttonss">
+            <button type="submit" id="createBtn">Publier</button>
+            <button type="button" id="updateBtn" style="display:none;">Modifier</button>
+            <button type="button" id="deleteBtn" style="display:none;">Supprimer</button>
+        </div>
     </form>
 
     <script type="module" src="admin.js"></script>

@@ -89,7 +89,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-form {
+form, #selectForm {
     background-color: #313338;
     padding: 20px;
     border-radius: 8px;
@@ -101,7 +101,7 @@ form {
 }
 
 @media screen and (max-width: 1920px) {
-    form {
+    form, #selectForm {
         margin-right: 1%;
         margin-top: 1%;
     }
@@ -117,7 +117,7 @@ form {
 }
 
 @media screen and (max-width: 960px) {
-    form {
+    form, #selectForm {
         margin-right: 1.5%;
         margin-top: 1.5%;
     }
@@ -133,7 +133,7 @@ form {
 }
 
 @media only screen and (max-width: 600px) {
-    form {
+    form, #selectForm {
         margin-right: 2%;
         margin-top: 2%;
     }
