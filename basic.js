@@ -15,7 +15,6 @@
 */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
 import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -29,7 +28,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getFirestore(app);
 
 const toggleButton = document.getElementById('dropdownToggle');
@@ -60,25 +58,3 @@ async function setLastArticleLink() {
 }
 
 setLastArticleLink();
-
-const loginForm = document.getElementById("loginForm");
-
-loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        if (user.emailVerified) {
-            window.location.href = "../admin";
-        } else {
-            alert("Veuillez vérifier votre email avant de vous connecter.");
-        }
-    } catch (error) {
-        alert("Erreur de connexion : " + error.message);
-    }
-});

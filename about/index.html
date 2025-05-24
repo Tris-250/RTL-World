@@ -19,14 +19,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imago Veritatis - Panneau Administrateur</title>
-    <link rel="stylesheet" href="admin.css">
+    <title>Imago Veritatis - À propos de nous</title>
+    <link rel="stylesheet" href="../article.css">
     <link rel="icon" type="image/png" href="../logo.png">
+
+    <meta property="og:title" content="Imago Veritatis - À propos de nous" />
+    <meta property="og:description" content="Apprenez en plus sur le Imago Veritatis, le journal indépendant et véridique orionnite !" />
+    <meta property="og:image" content="../logo.png" />
+    <meta property="og:url" content="https://imago-veritatis.github.io/Imago-Veritatis/about/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:determiner" content="le" />
+    <meta property="og:locale" content="fr_FR" />
 </head>
 <body>
     <header class="main-header">
         <img src="../logo.png" alt="Logo du journal" class="logo">
-        <span class="page-title">Panneau Administrateur</span>
+        <span class="page-title">À propos de nous</span>
         <div class="dropdown">
             <button id="dropdownToggle" class="header-button">+</button>
             <div id="dropdownMenu" class="dropdown-content">
@@ -40,38 +48,19 @@
             </div>
         </div>
     </header>
-    <form id="articleForm">
-        <h1>Ajouter un article</h1>
-        
-        <label for="title">Titre :</label>
-        <input type="text" id="title" required>
-        
-        <label for="author">Auteur :</label>
-        <input type="text" id="author" required>
-        
-        <label for="date">Date (format JJ/MM/AAAA) :</label>
-        <input type="text" id="date" required>
 
-        <label for="content">Contenu (Markdown) :</label>
-        <textarea id="content" rows="5" required></textarea>
-
-        <label for="imageUpload">Image :</label>
-        <input type="file" id="imageUpload" accept="image/*">
-
-        <label for="memeUpload">Meme :</label>
-        <input type="file" id="memeUpload" accept="image/*">
-
-        <label for="category">Catégorie :</label>
-        <select id="category">
-            <option value="Votre quotidien">Votre quotidien</option>
-            <option value="Flash Infos">Flash Infos</option>
-            <option value="Long format">Long format</option>
-            <option value="Abrège frère">Abrège frère</option>
-        </select>
-
-        <button type="submit">Publier</button>
-    </form>
-
-    <script type="module" src="admin.js"></script>
+    <div id="article-container">
+        <div id="article-content">
+            <h1 class="article-title">À propos du Imago Veritatis :</h1>
+            <p class="article-meta">Timoh de Solarys - ??/??/2025</p>
+            <div class="article-body">
+                <blockquote>
+                    <h2><i>L'article est en préparation...</i></h2>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="../basic.js"></script>
 </body>
 </html>

@@ -55,7 +55,7 @@ async function setLastArticleLink() {
     if (!snapshot.empty) {
         const docSnap = snapshot.docs[0];
         const link = document.getElementById('lastArticleLink');
-        link.href = `/article.html?id=${docSnap.id}`;
+        link.href = `../article.html?id=${docSnap.id}`;
     }
 }
 
@@ -82,7 +82,7 @@ signupForm.addEventListener("submit", async (e) => {
         await sendEmailVerification(user);
 
         alert("Inscription réussie ! Un e-mail de vérification a été envoyé. Veuillez vérifier votre e-mail.");
-        window.location.href = "/login";
+        window.location.href = "../login";
     } catch (error) {
         console.error("Erreur d'inscription :", error);
         alert("Erreur lors de l'inscription : " + error.message);

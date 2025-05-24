@@ -63,42 +63,6 @@ async function setLastArticleLink() {
 
 setLastArticleLink();
 
-function stripHTML(html) {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    return tempDiv.textContent || tempDiv.innerText || "";
-}
-
-function updateHeadFromArticle(article) {
-    document.title = `Imago Veritatis - ${article.title}`;
-
-    const setMeta = (name, content, property = false) => {
-        let meta = document.querySelector(`${property ? 'meta[property="' + name + '"]' : 'meta[name="' + name + '"]'}`);
-        if (!meta) {
-            meta = document.createElement('meta');
-            property ? meta.setAttribute('property', name) : meta.setAttribute('name', name);
-            document.head.appendChild(meta);
-        }
-        meta.setAttribute('content', content);
-    };
-
-    const htmlContent = toHTML(article.content);
-    const plainText = stripHTML(htmlContent)
-    const description = plainText.slice(0, 160).replace(/\s+/g, ' ').trim() + '…';
-
-    setMeta("description", description);
-    setMeta("robots", "index, follow");
-
-    // Open Graph
-    setMeta("og:title", `Imago Veritatis - ${article.title}`, true);
-    setMeta("og:description", description);
-    setMeta("og:image", article.image || "logo.png", true);
-    setMeta("og:url", window.location.href, true);
-    setMeta("og:type", "article", true);
-    setMeta("og:locale", "fr_FR", true);
-
-}
-
 async function loadArticle() {
     if (!articleId) {
         document.getElementById("article-content").innerHTML = "<p>Article introuvable</p>";
@@ -110,8 +74,6 @@ async function loadArticle() {
 
     if (articleSnap.exists()) {
         let article = articleSnap.data();
-        
-        updateHeadFromArticle(article);
 
         document.title = `Imago Veritatis - ${article.title}`;
 

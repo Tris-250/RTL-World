@@ -55,7 +55,7 @@ async function setLastArticleLink() {
     if (!snapshot.empty) {
         const docSnap = snapshot.docs[0];
         const link = document.getElementById('lastArticleLink');
-        link.href = `/article.html?id=${docSnap.id}`;
+        link.href = `../article.html?id=${docSnap.id}`;
     }
 }
 
