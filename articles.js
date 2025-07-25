@@ -14,22 +14,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
 const categoryFilter = document.getElementById("categoryFilter");
 const toggleButton = document.getElementById('dropdownToggle');
 const dropdownMenu = document.getElementById('dropdownMenu');
+const articlesContainer = document.getElementById("articles-container");
+
 const pageSize = 10;
 const placeholderCount = 5;
 let lastVisibleDoc = null;
 let isLoading = false;
 let hasMore = true;
-const articlesContainer = document.getElementById("articles-container");
-const sentinel = document.createElement("div");
 let allArticles = [];
 const categoriesSet = new Set();
 
-const toggleButton = document.getElementById('dropdownToggle');
-const dropdownMenu = document.getElementById('dropdownMenu');
-
+// Dropdown interactivité
 if (toggleButton && dropdownMenu) {
     toggleButton.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -45,6 +44,7 @@ if (toggleButton && dropdownMenu) {
     });
 }
 
+// Dernier article
 async function setLastArticleLink() {
     const articlesRef = collection(db, 'articles');
     const q = query(articlesRef, orderBy('realTimestamp', 'desc'), limit(1));
@@ -52,12 +52,12 @@ async function setLastArticleLink() {
     if (!snapshot.empty) {
         const docSnap = snapshot.docs[0];
         const link = document.getElementById('lastArticleLink');
-        link.href = `article.html?id=${docSnap.id}`;
+        if (link) link.href = `article.html?id=${docSnap.id}`;
     }
 }
-
 setLastArticleLink();
 
+// Filtres par catégorie
 categoryFilter.addEventListener("change", () => {
     const selected = categoryFilter.value;
     const articlesToDisplay = selected === "all"
@@ -83,6 +83,8 @@ function displayArticlesFromList(list) {
     });
 }
 
+// Placeholder
+const sentinel = document.createElement("div");
 sentinel.id = "scroll-sentinel";
 articlesContainer.after(sentinel);
 
@@ -97,60 +99,46 @@ function createPlaceholder() {
     return placeholder;
 }
 function showPlaceholders() {
-    for (let i = 0; i < placeholderCount; i++) articlesContainer.appendChild(createPlaceholder());
+    for (let i = 0; i < placeholderCount; i++) {
+        articlesContainer.appendChild(createPlaceholder());
+    }
 }
 function removePlaceholders() {
     document.querySelectorAll('.placeholder').forEach(el => el.remove());
 }
 
+// Troncature safe du HTML
 function safeTruncate(html, maxLen) {
-  let truncated = html.slice(0, maxLen);
-
-  truncated = truncated.replace(/&[^\s;]*?$/, '');
-
-  truncated = truncated.replace(/<[^>]*?$/, '');
-
-  const openTags   = [...truncated.matchAll(/<([a-z]+)(\s[^>]*)?>/gi)].map(m => m[1]);
-  const closeTags  = [...truncated.matchAll(/<\/([a-z]+)>/gi)].map(m => m[1]);
-
-  const stack = [];
-  openTags.forEach(tag => {
-    const idxClose = closeTags.indexOf(tag);
-    if (idxClose !== -1) {
-      closeTags.splice(idxClose, 1);
-    } else {
-      stack.push(tag);
-    }
-  });
-
-  stack.reverse().forEach(tag => {
-    truncated += `</${tag}>`;
-  });
-
-  return truncated;
+    let truncated = html.slice(0, maxLen);
+    truncated = truncated.replace(/&[^\s;]*?$/, '');
+    truncated = truncated.replace(/<[^>]*?$/, '');
+    const openTags = [...truncated.matchAll(/<([a-z]+)(\s[^>]*)?>/gi)].map(m => m[1]);
+    const closeTags = [...truncated.matchAll(/<\/([a-z]+)>/gi)].map(m => m[1]);
+    const stack = [];
+    openTags.forEach(tag => {
+        const idx = closeTags.indexOf(tag);
+        if (idx !== -1) {
+            closeTags.splice(idx, 1);
+        } else {
+            stack.push(tag);
+        }
+    });
+    stack.reverse().forEach(tag => {
+        truncated += `</${tag}>`;
+    });
+    return truncated;
 }
 
+// Chargement par lots
 async function loadBatch() {
     if (isLoading || !hasMore) return;
     isLoading = true;
     showPlaceholders();
 
     const articlesRef = collection(db, "articles");
-    let q;
-    if (lastVisibleDoc) {
-        q = query(
-            articlesRef,
-            orderBy('realTimestamp', 'desc'),
-            startAfter(lastVisibleDoc),
-            limit(pageSize)
-        );
-    } else {
-        q = query(
-            articlesRef,
-            orderBy('realTimestamp', 'desc'),
-            limit(pageSize)
-        );
-    }
+    let q = lastVisibleDoc
+        ? query(articlesRef, orderBy('realTimestamp', 'desc'), startAfter(lastVisibleDoc), limit(pageSize))
+        : query(articlesRef, orderBy('realTimestamp', 'desc'), limit(pageSize));
 
     const snapshot = await getDocs(q);
     removePlaceholders();
@@ -165,50 +153,54 @@ async function loadBatch() {
     if (snapshot.docs.length < pageSize) hasMore = false;
 
     snapshot.forEach(docSnap => {
-    const data = docSnap.data();
-    let discordContent = toHTML(data.content);
-    let htmlContent = discordContent.replaceAll('</small>', '</small><br>');
-    const previewHTML = safeTruncate(htmlContent, 300);
-    const dateStr = data.timestamp || data.realTimestamp.toDate().toLocaleDateString();
+        const data = docSnap.data();
+        const discordContent = toHTML(data.content);
+        const htmlContent = discordContent.replaceAll('</small>', '</small><br>');
+        const previewHTML = safeTruncate(htmlContent, 300);
+        const dateStr = data.realTimestamp
+            ? data.realTimestamp.toDate().toLocaleDateString()
+            : data.timestamp || "Date inconnue";
 
-    const articleObj = {
-        id: docSnap.id,
-        title: data.title,
-        author: data.author,
-        category: data.category,
-        meme: data.meme,
-        previewHTML,
-        dateStr
-    };
-    allArticles.push(articleObj);
+        const articleObj = {
+            id: docSnap.id,
+            title: data.title,
+            author: data.author,
+            category: data.category,
+            meme: data.meme,
+            previewHTML,
+            dateStr
+        };
+        allArticles.push(articleObj);
 
-    if (data.category && !categoriesSet.has(data.category)) {
-        categoriesSet.add(data.category);
-        const option = document.createElement("option");
-        option.value = data.category;
-        option.textContent = data.category;
-        categoryFilter.appendChild(option);
-    }
+        if (data.category && !categoriesSet.has(data.category)) {
+            categoriesSet.add(data.category);
+            const option = document.createElement("option");
+            option.value = data.category;
+            option.textContent = data.category;
+            categoryFilter.appendChild(option);
+        }
 
-    const el = document.createElement("div");
-    el.classList.add("article-card");
-    el.innerHTML = `
-        <a href="article.html?id=${docSnap.id}" class="article-link">
-            <h2>${data.title}</h2>
-            <p>Auteur : ${data.author} - Publié le : ${dateStr} - Catégorie : ${data.category}</p>
-            <div>${previewHTML}...</div>
-            ${data.meme ? `<img src="${data.meme}" alt="Meme" class="article-image">` : ''}
-        </a>
-    `;
-    articlesContainer.appendChild(el);
+        const el = document.createElement("div");
+        el.classList.add("article-card");
+        el.innerHTML = `
+            <a href="article.html?id=${docSnap.id}" class="article-link">
+                <h2>${data.title}</h2>
+                <p>Auteur : ${data.author} - Publié le : ${dateStr} - Catégorie : ${data.category}</p>
+                <div>${previewHTML}...</div>
+                ${data.meme ? `<img src="${data.meme}" alt="Meme" class="article-image">` : ''}
+            </a>
+        `;
+        articlesContainer.appendChild(el);
     });
-
 
     isLoading = false;
 }
 
+// Lancement avec IntersectionObserver
 const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) loadBatch(); });
+    entries.forEach(entry => {
+        if (entry.isIntersecting) loadBatch();
+    });
 }, { rootMargin: '200px' });
 observer.observe(sentinel);
 
