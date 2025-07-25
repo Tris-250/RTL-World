@@ -5,20 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RTL World - Panneau Administrateur</title>
     <link rel="stylesheet" href="admin.css">
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="../logo.png">
 </head>
 <body>
     <header class="main-header">
-        <img src="logo.png" alt="Logo du journal" class="logo">
+        <img src="../logo.png" alt="Logo du journal" class="logo">
         <span class="page-title">Panneau Administrateur</span>
-        <a href="https://discord.gg/dttgPJzTmK" class="header-button">Discord Groupe RTL</a>
-        <a href="https://discord.gg/VnjaETmxD2" class="header-button">Discord Parlement du Listenbourg</a>
-        <a href="login.html" class="header-button">Connexion administrateur</a>
-        <a href="." class="header-button">Accueil</a>
-
+        <div class="dropdown">
+            <button id="dropdownToggle" class="header-button">+</button>
+            <div id="dropdownMenu" class="dropdown-content">
+                <a href="../">Accueil</a>
+                <a href="https://discord.gg/dttgPJzTmK">Discord Groupe RTL</a>
+                <a href="https://discord.gg/VnjaETmxD2">Discord Parlement du Listenbourg</a>
+                <a href="../login/index.html">Connexion administrateur</a>
+                <a href="../about">À propos de RTL World</a>
+                <hr class="dropdown-separator">
+                <a id="lastArticleLink" href="#">Dernier article</a>
+            </div>
+        </div>
     </header>
+
+    <div id="selectForm">
+        <h2>Modifier / Supprimer un article</h2>
+        <select id="articleSelect" onclick="reloadArticleList()">
+            <option value="" disabled selected>-- Choisissez un article --</option>
+        </select>
+        <button id="loadBtn">Charger</button>
+    </div>
+
     <form id="articleForm">
-        <h1>Ajouter un article</h1>
+        <h1 id="formTitle">Ajouter un article</h1>
         
         <label for="title">Titre :</label>
         <input type="text" id="title" required>
@@ -30,7 +46,7 @@
         <input type="text" id="date" required>
 
         <label for="content">Contenu (Markdown) :</label>
-        <textarea id="content" rows="5" required></textarea>
+        <textarea id="content" rows="10" required></textarea>
 
         <label for="imageUpload">Image :</label>
         <input type="file" id="imageUpload" accept="image/*">
@@ -48,7 +64,11 @@
             <option value="Rediffusion RTL">Rediffusion RTL</option>
         </select>
 
-        <button type="submit">Publier</button>
+        <div class="buttonss">
+            <button type="submit" id="createBtn">Publier</button>
+            <button type="button" id="updateBtn" style="display:none;">Modifier</button>
+            <button type="button" id="deleteBtn" style="display:none;">Supprimer</button>
+        </div>
     </form>
 
     <script type="module" src="admin.js"></script>
