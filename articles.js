@@ -27,18 +27,23 @@ const sentinel = document.createElement("div");
 let allArticles = [];
 const categoriesSet = new Set();
 
-toggleButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
-});
+const toggleButton = document.getElementById('dropdownToggle');
+const dropdownMenu = document.getElementById('dropdownMenu');
 
-window.addEventListener('click', () => {
-    dropdownMenu.style.display = 'none';
-});
+if (toggleButton && dropdownMenu) {
+    toggleButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+    });
 
-dropdownMenu.addEventListener('click', (e) => {
-    e.stopPropagation();
-});
+    window.addEventListener('click', () => {
+        dropdownMenu.style.display = 'none';
+    });
+
+    dropdownMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
 
 async function setLastArticleLink() {
     const articlesRef = collection(db, 'articles');

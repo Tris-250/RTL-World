@@ -55,33 +55,6 @@ async function ajouterRealTimestamps() {
   const articlesRef = collection(db, "articles");
   const snapshot = await getDocs(articlesRef);
 
-  for (const article of snapshot.docs) {
-    const data = article.data();
-    const id = article.id;
-
-    if (!data.timestamp) continue;
-
-    try {
-      const [jour, mois, annee] = data.timestamp.split('/').map(n => parseInt(n, 10));
-      const date = new Date(annee, mois - 1, jour); // mois - 1 car JS commence à 0
-
-      if (isNaN(date.getTime())) {
-        console.warn(`Date invalide pour ${id} : ${data.timestamp}`);
-        continue;
-      }
-
-      await updateDoc(doc(db, "articles", id), {
-        realTimestamp: date.getTime()
-      });
-
-      console.log(`${id} mis à jour avec realTimestamp = ${date.getTime()}`);
-    } catch (e) {
-      console.error(`Erreur pour ${id}`, e);
-    }
-  }
-
-  console.log("Tous les realTimestamp ont été ajoutés.");
-}
 
 ajouterRealTimestamps();
 
