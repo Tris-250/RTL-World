@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTL World - Inscription</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+    <header class="main-header">
+        <img src="logo.png" alt="Logo du journal" class="logo">
+        <span class="page-title">Inscription Administrateur</span>
+        <a href="https://discord.gg/dttgPJzTmK" class="header-button">Discord Groupe RTL</a>
+        <a href="https://discord.gg/VnjaETmxD2" class="header-button">Discord Parlement du Listenbourg</a>
+        <a href="login.html" class="header-button">Connexion administrateur</a>
+        <a href="." class="header-button">Accueil</a>
+
+    </header>
+    <form id="signupForm">
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="confirmPassword">Confirmer le mot de passe :</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+        <button type="submit">S'inscrire</button>
+        <p>Vous avez déjà un compte administrateur ? <a href="login.html">Se connecter</a></p>
+    </form>
+    
+    <script type="module" src="signup.js"></script>
+</body>
+</html>
