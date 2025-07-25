@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bienvenue sur la page d'accueil de RTL World, la chaîne d'information intermicronationale du Listenbourg' !" />
-  <meta name="robots" content="index, follow" />
-  <title>RTL World - Page d'accueil</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="logo.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienvenue sur la page d'accueil de RTL World, la chaîne d'information intermicronationale du Listenbourg !">
+    <meta name="robots" content="index, follow">
+    <title>RTL World - Page d'accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
 
-  <meta property="og:title" content="RTL World - Page d'accueil" />
-  <meta property="og:description" content="Bienvenue sur la page d'accueil de RTL World, la chaîne d'information intermicronationale du Listenbourg' !" />
-  <meta property="og:image" content="logo.png" />
-  <meta property="og:url" content="https://tris-250.github.io/RTL-World/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:determiner" content="le" />
-  <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="RTL World - Page d'accueil" />
+    <meta property="og:description" content="Bienvenue sur la page d'accueil de RTL World, la chaîne d'information intermicronationale du Listenbourg !" />
+    <meta property="og:image" content="logo.png" />
+    <meta property="og:url" content="https://tris-250.github.io/RTL-World/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:determiner" content="le" />
+    <meta property="og:locale" content="fr_FR" />
 </head>
 <body>
-  <header class="main-header">
-    <img src="logo.png" alt="Logo RTL World" class="logo" />
-    <span class="page-title">Page d'accueil</span>
+    <header class="main-header">
+        <img src="logo.png" alt="Logo du journal" class="logo">
+        <span class="page-title">Page d'accueil</span>
+        <div class="dropdown">
+            <button id="dropdownToggle" class="header-button">+</button>
+            <div id="dropdownMenu" class="dropdown-content">
+                <a href="https://discord.gg/dttgPJzTmK">Discord Groupe RTL</a>
+                <a href="https://discord.gg/VnjaETmxD2">Discord Parlement du Listenbourg</a>
+                <a href="../login/index.html">Connexion administrateur</a>
+                <a href="../about">À propos de RTL World</a>
+                <hr class="dropdown-separator" />
+                <a id="lastArticleLink" href="#">Dernier article</a>
+                <div class="header-select">
+                <select id="categoryFilter">
+                    <option value="all">Toutes les catégories</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- Bouton manquant -->
-    <button id="dropdownToggle" class="dropdown-button">☰ Menu</button>
-
-    <div id="dropdownMenu" class="dropdown-content">
-      <a href="https://discord.gg/dttgPJzTmK">Discord Groupe RTL</a>
-      <a href="https://discord.gg/VnjaETmxD2">Discord Parlement du Listenbourg</a>
-      <a href="../login/index.html">Connexion administrateur</a>
-      <a href="../about">À propos de RTL World</a>
-      <hr class="dropdown-separator" />
-      <a id="lastArticleLink" href="#">Dernier article</a>
-    </div>
-  </header>
-
-  <main>
-    <!-- Filtre par catégorie (obligatoire pour articles.js) -->
-    <div class="filter">
-      <label for="categoryFilter">Filtrer par catégorie :</label>
-      <select id="categoryFilter">
-        <option value="all">Toutes les catégories</option>
-      </select>
-    </div>
-
-    <!-- Conteneur des articles -->
     <div id="articles-container"></div>
-  </main>
 
-  <script type="module" src="articles.js"></script>
+    <script type="module" src="articles.js"></script>
 </body>
 </html>

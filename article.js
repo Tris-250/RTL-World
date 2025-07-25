@@ -60,7 +60,7 @@ async function loadArticle() {
     if (articleSnap.exists()) {
         let article = articleSnap.data();
 
-        document.title = `RTL World - ${article.title}`;
+        document.title = `Imago Veritatis - ${article.title}`;
 
         document.getElementById("article-category").textContent = article.category;
 
