@@ -84,7 +84,7 @@ onAuthStateChanged(auth, (user) => {
         
     } else {
         alert("Veuillez vous connecter pour accéder à cette page.");
-        window.location.href = "/login";
+        window.location.href = "../login";
     }
 });
 
