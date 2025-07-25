@@ -1,3 +1,5 @@
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBw7PSHW4fe2jptxyf7xHtyINSrYG_TupA",
