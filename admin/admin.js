@@ -1,6 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBw7PSHW4fe2jptxyf7xHtyINSrYG_TupA",
@@ -50,6 +50,40 @@ window.addEventListener('click', () => {
 dropdownMenu.addEventListener('click', (e) => {
     e.stopPropagation();
 });
+
+async function ajouterRealTimestamps() {
+  const articlesRef = collection(db, "articles");
+  const snapshot = await getDocs(articlesRef);
+
+  for (const article of snapshot.docs) {
+    const data = article.data();
+    const id = article.id;
+
+    if (!data.timestamp) continue;
+
+    try {
+      const [jour, mois, annee] = data.timestamp.split('/').map(n => parseInt(n, 10));
+      const date = new Date(annee, mois - 1, jour); // mois - 1 car JS commence à 0
+
+      if (isNaN(date.getTime())) {
+        console.warn(`Date invalide pour ${id} : ${data.timestamp}`);
+        continue;
+      }
+
+      await updateDoc(doc(db, "articles", id), {
+        realTimestamp: date.getTime()
+      });
+
+      console.log(`${id} mis à jour avec realTimestamp = ${date.getTime()}`);
+    } catch (e) {
+      console.error(`Erreur pour ${id}`, e);
+    }
+  }
+
+  console.log("Tous les realTimestamp ont été ajoutés.");
+}
+
+ajouterRealTimestamps();
 
 async function setLastArticleLink() {
     const articlesRef = collection(db, 'articles');
