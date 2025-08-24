@@ -297,3 +297,11 @@ small {
   height: auto;
   display: block;
 }
+/* Limiter la taille des images intégrées dans les articles */
+.article-card img {
+  max-width: 40px;   /* largeur maximale */
+  max-height: 40px;  /* hauteur maximale */
+  vertical-align: middle; /* pour les aligner avec le texte */
+  margin: 2px;
+}
+
