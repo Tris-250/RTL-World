@@ -240,3 +240,18 @@ body {
   border-top: 1px solid #555;
   margin: 8px 0;
 }
+
+/* Icônes inline (emojis/mini-icônes) dans le contenu */
+.icon-inline {
+  height: 24px;         /* taille discrète */
+  width: auto;          /* conserve le ratio */
+  vertical-align: -3px; /* bien aligné avec le texte */
+  margin: 0 2px;
+}
+
+/* Pour éviter d’impacter les grandes images d’illustration que tu contrôles déjà */
+.article-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
