@@ -51,13 +51,6 @@ dropdownMenu.addEventListener('click', (e) => {
     e.stopPropagation();
 });
 
-async function ajouterRealTimestamps() {
-  const articlesRef = collection(db, "articles");
-  const snapshot = await getDocs(articlesRef);
-
-
-ajouterRealTimestamps();
-
 async function setLastArticleLink() {
     const articlesRef = collection(db, 'articles');
     const q = query(articlesRef, orderBy('realTimestamp', 'desc'), limit(1));
