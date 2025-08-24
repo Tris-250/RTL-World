@@ -260,42 +260,28 @@ small {
   margin: 8px 0;
 }
 
+.header-select {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
 .header-select select {
-    background-color: #313338;
+    background-color: #333;
     color: #e0e0e0;
-    border: none;
-    padding: 12px 16px;
-    font-size: 1rem;
+    border: 1px solid #444;
+    padding: 6px 12px;
+    font-size: 0.9rem;
     border-radius: 5px;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.5;
+    font-family: inherit;
+    height: 36px;
+    appearance: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-decoration: none;
-    display: block;
-    right: 0;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 100;
+    min-width: auto;   /* plus de largeur forcée */
+    box-shadow: none;  /* supprime l’effet dropdown */
 }
 
 .header-select select:hover {
-    background-color: #444848;
+    background-color: #444;
 }
-
-/* Toutes les petites images inline */
-.article-card img,
-.article-content img {
-  max-height: 24px;     /* hauteur fixe et discrète */
-  width: auto;          /* garde le ratio */
-  vertical-align: middle;
-}
-
-/* Les images que tu veux grandes (meme, illustration) gardent leur classe */
-.article-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-top: 10px;
-}
-

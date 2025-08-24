@@ -19,26 +19,32 @@
 </head>
 <body>
     <header class="main-header">
-        <img src="logo.png" alt="Logo du journal" class="logo">
-        <span class="page-title">Page d'accueil</span>
-        <div class="dropdown">
-            <button id="dropdownToggle" class="header-button">+</button>
-            <div id="dropdownMenu" class="dropdown-content">
-                <a href="https://discord.gg/dttgPJzTmK">Discord Groupe RTL</a>
-                <a href="https://discord.gg/VnjaETmxD2">Discord Parlement du Listenbourg</a>
-                <a href="./login/index.html">Connexion administrateur</a>
-                <a href="./about">À propos de RTL World</a>
-                <hr class="dropdown-separator" />
-                <a id="lastArticleLink" href="#">Dernier article</a>
-                <div class="header-select">
-                <select id="categoryFilter">
-                    <option value="all">Toutes les catégories</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </header>
+  <img src="logo.png" alt="Logo du journal" class="logo">
 
+  <span class="page-title">Page d'accueil</span>
+
+  <div class="header-right">
+    <!-- Sélecteur de catégorie compact (en dehors du menu +) -->
+    <div class="header-select">
+      <select id="categoryFilter" aria-label="Filtrer par catégorie">
+        <option value="all">Toutes les catégories</option>
+      </select>
+    </div>
+
+    <!-- Menu + conservé -->
+    <div class="dropdown">
+      <button id="dropdownToggle" class="header-button" aria-haspopup="true" aria-expanded="false">+</button>
+      <div id="dropdownMenu" class="dropdown-content" role="menu">
+        <a href="https://discord.gg/dttgPJzTmK">Discord Groupe RTL</a>
+        <a href="https://discord.gg/VnjaETmxD2">Discord Parlement du Listenbourg</a>
+        <a href="./login/index.html">Connexion administrateur</a>
+        <a href="./about">À propos de RTL World</a>
+        <hr class="dropdown-separator" />
+        <a id="lastArticleLink" href="#">Dernier article</a>
+      </div>
+    </div>
+  </div>
+</header>
     <div id="articles-container"></div>
 
     <script type="module" src="articles.js"></script>

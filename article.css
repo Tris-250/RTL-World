@@ -248,19 +248,3 @@ body {
   vertical-align: -3px; /* bien aligné avec le texte */
   margin: 0 2px;
 }
-
-/* Toutes les petites images inline */
-.article-card img,
-.article-content img {
-  max-height: 24px;     /* hauteur fixe et discrète */
-  width: auto;          /* garde le ratio */
-  vertical-align: middle;
-}
-
-/* Les images que tu veux grandes (meme, illustration) gardent leur classe */
-.article-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-top: 10px;
-}
