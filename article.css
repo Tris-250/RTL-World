@@ -249,16 +249,18 @@ body {
   margin: 0 2px;
 }
 
-/* Pour éviter d’impacter les grandes images d’illustration que tu contrôles déjà */
+/* Toutes les petites images inline */
+.article-card img,
+.article-content img {
+  max-height: 24px;     /* hauteur fixe et discrète */
+  width: auto;          /* garde le ratio */
+  vertical-align: middle;
+}
+
+/* Les images que tu veux grandes (meme, illustration) gardent leur classe */
 .article-image {
   max-width: 100%;
   height: auto;
   display: block;
-}
-/* Limiter la taille des images intégrées dans les articles */
-.article-card img {
-  max-width: 40px;   /* largeur maximale */
-  max-height: 40px;  /* hauteur maximale */
-  vertical-align: middle; /* pour les aligner avec le texte */
-  margin: 2px;
+  margin-top: 10px;
 }

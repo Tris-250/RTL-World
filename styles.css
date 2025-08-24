@@ -283,25 +283,19 @@ small {
     background-color: #444848;
 }
 
-/* Icônes inline (emojis/mini-icônes) dans le contenu */
-.icon-inline {
-  height: 24px;         /* taille discrète */
-  width: auto;          /* conserve le ratio */
-  vertical-align: -3px; /* bien aligné avec le texte */
-  margin: 0 2px;
+/* Toutes les petites images inline */
+.article-card img,
+.article-content img {
+  max-height: 24px;     /* hauteur fixe et discrète */
+  width: auto;          /* garde le ratio */
+  vertical-align: middle;
 }
 
-/* Pour éviter d’impacter les grandes images d’illustration que tu contrôles déjà */
+/* Les images que tu veux grandes (meme, illustration) gardent leur classe */
 .article-image {
   max-width: 100%;
   height: auto;
   display: block;
-}
-/* Limiter la taille des images intégrées dans les articles */
-.article-card img {
-  max-width: 40px;   /* largeur maximale */
-  max-height: 40px;  /* hauteur maximale */
-  vertical-align: middle; /* pour les aligner avec le texte */
-  margin: 2px;
+  margin-top: 10px;
 }
 
