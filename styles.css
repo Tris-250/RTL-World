@@ -280,17 +280,10 @@ small {
     margin: 8px 0;
 }
 
-/* Emoji inline, taille texte */
 .emoji {
-  width: 1.15em;
-  height: 1.15em;
-  vertical-align: -0.2em; /* ajuste l’alignement si besoin */
+  width: 20px;
+  height: 20px;
+  vertical-align: text-bottom;
+  margin: 0 2px;
   display: inline-block;
-}
-
-/* Variante : emoji discret (encore plus petit) */
-.emoji--sm {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.2em;
 }
