@@ -163,6 +163,20 @@ async function loadBatch() {
     snapshot.forEach(docSnap => {
         const data = docSnap.data();
         let discordContent = toHTML(data.content);
+        
+        // === Injecteur d'emoji HTML après toHTML ===
+function injectCustomEmoji(html) {
+  const map = {
+    ":lieu:"  : "https://tris-250.github.io/RTL-World/emojis/lieu.png",
+    ":source:": "https://tris-250.github.io/RTL-World/emojis/source.png",
+    ":logo:"  : "https://tris-250.github.io/RTL-World/emojis/logo.png"
+  };
+  return html
+    .replace(/:lieu:|:source:|:logo:/g, (m) =>
+      `<img class="emoji" src="${map[m]}" alt="${m}" loading="lazy">`
+    );
+}
+
         let htmlContent = discordContent.replaceAll('</small>', '</small><br>');
         const previewHTML = safeTruncate(htmlContent, 300);
         const dateStr = data.timestamp || data.realTimestamp.toDate().toLocaleDateString();
