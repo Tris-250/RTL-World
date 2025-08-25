@@ -287,3 +287,17 @@ small {
   margin: 0 2px;
   display: inline-block;
 }
+/* taillez les emojis "custom" insérés */
+.article-body img.emoji {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+  margin: 0 .15em;
+}
+
+/* sécurité : toutes les autres images du contenu restent responsives */
+.article-body img:not(.emoji) {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
