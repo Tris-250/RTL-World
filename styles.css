@@ -280,7 +280,7 @@ small {
     margin: 8px 0;
 }
 
-.emoji {
+/*.emoji {
   width: 20px;
   height: 20px;
   vertical-align: text-bottom;
@@ -288,7 +288,7 @@ small {
   display: inline-block;
 }
 /* taillez les emojis "custom" insérés */
-.article-body img.emoji {
+/*.article-body img.emoji {
   width: 1.15em;
   height: 1.15em;
   vertical-align: -0.2em;
@@ -296,7 +296,7 @@ small {
 }
 
 /* sécurité : toutes les autres images du contenu restent responsives */
-.article-body img:not(.emoji) {
+/*.article-body img:not(.emoji) {
   max-width: 100%;
   height: auto;
   display: inline-block;

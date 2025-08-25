@@ -54,7 +54,7 @@ function injectCustomEmoji(html) {
   const map = {
     ":lieu:"  : "https://tris-250.github.io/RTL-World/emojis/lieu.png",
     ":source:": "https://tris-250.github.io/RTL-World/emojis/source.png",
-    ":logo:"  : "https://tris-250.github.io/RTL-World/logo.png"
+    ":logo:"  : "https://tris-250.github.io/RTL-World/emojis/logo.png"
   };
   return html.replace(/:lieu:|:source:|:logo:/g, (m) =>
     `<img class="emoji" src="${map[m]}" alt="${m}" loading="lazy">`
